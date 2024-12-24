@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package test_service;
+
+service UserService {
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+    // Added new method
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+message GetUserResponse {
+    string user_id = 1;
+    string username = 2;
+    string email = 3;
+    UserStatus status = 4;
+}
+
+message CreateUserRequest {
+    string username = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message CreateUserResponse {
+    string user_id = 1;
+    string username = 2;
+    UserStatus status = 3;
+}
+
+message UpdateUserRequest {
+    string user_id = 1;
+    optional string username = 2;
+    optional string email = 3;
+    optional UserStatus status = 4;
+}
+
+message UpdateUserResponse {
+    string user_id = 1;
+    string username = 2;
+    string email = 3;
+    UserStatus status = 4;
+}
+
+message DeleteUserRequest {
+    string user_id = 1;
+}
+
+message DeleteUserResponse {
+    bool success = 1;
+    string user_id = 2;
+}
+
+enum UserStatus {
+    UNKNOWN = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+    SUSPENDED = 3;
+}
