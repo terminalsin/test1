@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package test_service;
+package test_service_2;
 
 service UserService {
     rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
